@@ -1,11 +1,11 @@
 #pragma once
 #include "../include/TipoNo.hpp"
 
-class ArvoreBinaria
+class Arvore
 {
 public:
-    ArvoreBinaria();
-    ~ArvoreBinaria();
+    Arvore();
+    ~Arvore();
 
     void Insere(TipoItem Item);
     void Caminha(int tipo);

@@ -7,13 +7,11 @@ using namespace std;
 
 namespace FuncoesTP1
 {
-    bool isOperand(char c)
+    bool ConfereOperador(char c)
     {
-        // If the character is a digit then it must
-        // be an operand
+        // Retorna se for ture se for um dígito e false se for um operador
         return isdigit(c);
     }
-
     const char *ModificadorDeString(const char *formula, const char *stringParaAnalisar)
     {
         char *novastring = new char[strlen(formula) + 1];
@@ -30,24 +28,22 @@ namespace FuncoesTP1
         }
         return novastring;
     }
-    int AvaliacaoDeExpressoes(string exprsn, const char *stringDeAnalise)
+    int AvaliacaoDeExpressoes(string expressoes, const char *stringDeAnalise)
     {
         Pilha Stack;
 
-        for (int j = exprsn.size() - 1; j >= 0; j--)
+        for (int j = expressoes.size() - 1; j >= 0; j--)
         {
 
-            // Push operand to Stack
-            // To convert exprsn[j] to digit subtract
-            // '0' from exprsn[j].
-            if (isOperand(exprsn[j]))
-                Stack.push(exprsn[j] - '0');
+            // Converte e empilha os dígitos na pilha
+            if (ConfereOperador(expressoes[j]))
+                Stack.push(expressoes[j] - '0');
 
             else
             {
-                int o1 = 3;
-                int o2 = 2;
-                if (exprsn[j] == '~')
+                int o1;
+                int o2;
+                if (expressoes[j] == '~')
                 {
                     o1 = Stack.top();
                     Stack.pop();
@@ -59,12 +55,10 @@ namespace FuncoesTP1
                     o2 = Stack.top();
                     Stack.pop();
                 }
-                // Operator encountered
-                // Pop two elements from Stack
+                // Se encontrar operadores
+                // Exclui os dois últimos itens da pilha
 
-                // Use switch case to operate on o1
-                // and o2 and perform o1 Or o2.
-                switch (exprsn[j])
+                switch (expressoes[j])
                 {
                 case '|':
                     Stack.push(o1 || o2);
@@ -81,31 +75,35 @@ namespace FuncoesTP1
 
         return Stack.top();
     }
-    // const char *AvaliacaoDeSatisfabilidade(const char *formula, const char *stringParaAnalisar)
-    // {
-    //     printf("Teste2");
-    //     return "Teste";
-    // };
 
-    // Function to check if the character is an operator
-    bool isOperator(char c)
+
+
+
+
+
+    
+
+    /* O código abaixo contém funções que irão transformar a fórmula da operação para o tipo
+       prefixado, desse modo facilitando na hora de avaliar as expressões!
+    */
+
+    bool SeOperador(char c)
     {
         return (!isalpha(c) && !isdigit(c));
     }
 
-    // Function to get the priority of operators
-    int getPriority(char C)
+    int pegaPrioridade(char C)
     {
         if (C == '|')
-            return 1;
+            return 1; // menor prioridade
         else if (C == '&')
             return 2;
         else if (C == '~')
-            return 3;
+            return 3; // maior prioridade
         return 0;
     }
 
-    // Function to convert the infix expression to postfix
+    // Converte expressoes infix para postfix
     string infixToPostfix(string infix)
     {
         infix = '(' + infix + ')';
@@ -116,19 +114,14 @@ namespace FuncoesTP1
         for (int i = 0; i < l; i++)
         {
 
-            // If the scanned character is an
-            // operand, add it to output.
+            // Se o caractere for um operador
+            // adicione em output
             if (isalpha(infix[i]) || isdigit(infix[i]))
                 output += infix[i];
 
-            // If the scanned character is an
-            // ‘(‘, push it to the stack.
             else if (infix[i] == '(')
                 char_stack.push('(');
 
-            // If the scanned character is an
-            // ‘)’, pop and output from the stack
-            // until an ‘(‘ is encountered.
             else if (infix[i] == ')')
             {
                 while (char_stack.top() != '(')
@@ -137,19 +130,17 @@ namespace FuncoesTP1
                     char_stack.pop();
                 }
 
-                // Remove '(' from the stack
+                // Remove '(' da pilha
                 char_stack.pop();
             }
-
-            // Operator found
             else
             {
-                if (isOperator(char_stack.top()))
+                if (SeOperador(char_stack.top()))
                 {
-                    if (infix[i] == '^')
+                    if (infix[i] == '~')
                     {
                         while (
-                            getPriority(infix[i]) <= getPriority(char_stack.top()))
+                            pegaPrioridade(infix[i]) <= pegaPrioridade(char_stack.top()))
                         {
                             output += char_stack.top();
                             char_stack.pop();
@@ -158,14 +149,14 @@ namespace FuncoesTP1
                     else
                     {
                         while (
-                            getPriority(infix[i]) < getPriority(char_stack.top()))
+                            pegaPrioridade(infix[i]) < pegaPrioridade(char_stack.top()))
                         {
                             output += char_stack.top();
                             char_stack.pop();
                         }
                     }
 
-                    // Push current Operator on stack
+                    // Empilha o operador na pilha
                     char_stack.push(infix[i]);
                 }
             }
@@ -178,12 +169,9 @@ namespace FuncoesTP1
         return output;
     }
 
-    // Function to convert infix to prefix notation
     string infixToPrefix(string infix)
     {
-        // Reverse String and replace ( with ) and vice versa
-        // Get Postfix
-        // Reverse Postfix
+
         std::string stringSemEspacos;
         for (char caractere : infix)
         {
@@ -196,10 +184,8 @@ namespace FuncoesTP1
 
         int l = infix.size();
 
-        // Reverse infix
         reverse(infix.begin(), infix.end());
 
-        // Replace ( with ) and vice versa
         for (int i = 0; i < l; i++)
         {
 
@@ -215,7 +201,6 @@ namespace FuncoesTP1
 
         string prefix = infixToPostfix(infix);
 
-        // Reverse postfix
         reverse(prefix.begin(), prefix.end());
 
         return prefix;

@@ -11,10 +11,12 @@ private:
 public:
     TipoNo()
     {
-        item.SetChave("");
+        item.setExpressao("");
+        item.setQuantificadorDaExpressao(' ');
+        item.setSatisfaz(false);
         esq = nullptr;
         dir = nullptr;
     };
 
-    friend class ArvoreBinaria;
+    friend class Arvore;
 };

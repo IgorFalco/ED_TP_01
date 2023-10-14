@@ -1,42 +1,48 @@
 #pragma once
 #include <iostream>
 
-typedef const char *TipoChave;
-
 class TipoItem
 {
 private:
-    TipoChave chave;
-    TipoChave resultado;
+    std::string expressao;
+    bool satisfaz;
+    char quantificadorDaExpressao;
 
 public:
     TipoItem()
     {
-        chave = ""; // indica um item vazio
-        resultado = "";
-    };
-    TipoItem(TipoChave c)
+        expressao = " ";
+        satisfaz = false;
+        quantificadorDaExpressao = ' ';
+    }
+
+    void setExpressao(std::string _expressao)
     {
-        chave = c;
-    };
-    void SetChave(TipoChave c)
+        expressao = _expressao;
+    }
+
+    void setSatisfaz(bool resultado)
     {
-        chave = c;
-    };
-    void SetResultado(TipoChave Resultado)
+        satisfaz = resultado;
+    }
+
+    void setQuantificadorDaExpressao(char quantificador)
     {
-        resultado = Resultado;
-    };
-    TipoChave GetChave()
+        quantificadorDaExpressao = quantificador;
+    }
+
+    std::string getExpressao()
     {
-        return chave;
-    };
-    TipoChave GetResultado()
+        return expressao;
+    }
+
+    bool getSatisfaz()
     {
-        return resultado;
-    };
-    void Imprime()
+        return satisfaz;
+    }
+
+    char getQuantificadorDaExpressao()
     {
-        std::cout << chave << std::endl;
-    };
+        return quantificadorDaExpressao;
+    }
 };
