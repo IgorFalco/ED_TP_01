@@ -5,7 +5,7 @@ OBJ = obj
 INC = include
 BIN = bin
 OBJS = $(OBJ)/tp1.o  
-HEADERS = $(INC)/Arvore.hpp $(INC)/Funcoes.hpp $(INC)/TipoCelula.hpp  $(INC)/TipoItem.hpp  $(INC)/TipoNo.hpp  $(INC)/Pilha.hpp 
+HEADERS = $(INC)/Arvore.hpp $(INC)/Funcoes.hpp $(INC)/TipoCelula.hpp  $(INC)/TipoItem.hpp  $(INC)/TipoNo.hpp  $(INC)/Pilha.hpp  $(INC)/FuncoesArvore.hpp 
 CFLAGS = -Wall -c -g -I $(INC)
 
 EXE = $(BIN)/tp1.out

@@ -1,0 +1,27 @@
+==31784== Memcheck, a memory error detector
+==31784== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==31784== Using Valgrind-3.21.0-d97fed7c3e-20230428 and LibVEX; rerun with -h for copyright info
+==31784== Command: ./tp1.out -a (\ (\ 0\ &\ 1\ )\ &\ (\ 2\ &\ 3\ )\ &\ (\ 4\ &\ 5\ )\ &\ (\ 6\ &\ 7\ )\ &\ (\ 8\ &\ 9\ )\ ) e1e1e1e1e
+==31784== Parent PID: 3214
+==31784== 
+--31784-- 
+--31784-- Valgrind options:
+--31784--    --leak-check=full
+--31784--    --show-leak-kinds=all
+--31784--    --track-origins=yes
+--31784--    --verbose
+--31784--    --log-file=valgrind-out.txt
+--31784-- Contents of /proc/version:
+--31784--   Linux version 5.15.90.1-microsoft-standard-WSL2 (oe-user@oe-host) (x86_64-msft-linux-gcc (GCC) 9.3.0, GNU ld (GNU Binutils) 2.34.0.20200220) #1 SMP Fri Jan 27 02:56:13 UTC 2023
+--31784-- 
+--31784-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand-rdseed
+--31784-- Page sizes: currently 4096, max supported 4096
+--31784-- Valgrind library directory: /usr/lib/valgrind
+--31784-- Reading syms from /home/igorfalco/UFMG/ESTRUTURA_DE_DADOS/ED_TP_01/bin/tp1.out
+--31784-- Reading syms from /usr/lib/ld-linux-x86-64.so.2
+==31784== Downloading debug info for /usr/lib/ld-linux-x86-64.so.2...
+--31784--   Considering /home/igorfalco/.cache/debuginfod_client/6ebd6e95dffa2afcbdaf7b7c91103b23ecf2b012/debuginfo ..
+--31784--   .. CRC is valid
+==31784== Successfully downloaded debug file for /usr/lib/ld-linux-x86-64.so.2
+--31784-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+==31784== Downloading debug info for /usr/lib/valgrind/memcheck-amd64-linux...

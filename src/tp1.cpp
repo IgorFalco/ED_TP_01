@@ -1,9 +1,13 @@
 #include <iostream>
 #include <string.h>
 #include "../include/Funcoes.hpp"
+#include "../include/FuncoesArvore.hpp"
+
+using namespace FuncoesAvaliacao;
+using namespace FuncoesSatisfabilidade;
 
 int main(int argc, char *argv[])
-{
+	{
 
 	if (argc != 4)
 	{
@@ -13,25 +17,25 @@ int main(int argc, char *argv[])
 
 	// Acessando as três strings passadas como argumentos
 	std::string operacao = argv[1];
-	const char *formula = argv[2];
-	const char *stringDeAnalise = argv[3];
+	std::string formula = argv[2];
+	std::string stringDeAnalise = argv[3];
 
-	int result = 2;
-
-	std::string PrefixString(FuncoesTP1::ModificadorDeString(formula, stringDeAnalise));
-	PrefixString = FuncoesTP1::infixToPrefix(PrefixString);
+	std::string resultado = "";
 
 	if (operacao == "-a")
 	{
-		result = FuncoesTP1::AvaliacaoDeExpressoes(PrefixString, stringDeAnalise);
+		std::string PrefixString(ModificadorDeString(formula, stringDeAnalise));
+		PrefixString = infixToPrefix(PrefixString);
+		resultado = std::to_string(AvaliacaoDeExpressoes(PrefixString));
 	}
 	else if (operacao == "-s")
 	{
-		// FuncoesTP1::AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
+		resultado = AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
 	}
 
+	resultado = AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
 	// Imprimindo as strings
-	std::cout << result << std::endl;
+	std::cout << resultado << std::endl;
 
 	return 0; // Retorna 0 para indicar sucesso
 }

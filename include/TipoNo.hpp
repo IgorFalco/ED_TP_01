@@ -11,12 +11,17 @@ private:
 public:
     TipoNo()
     {
-        item.setExpressao("");
-        item.setQuantificadorDaExpressao(' ');
+        item.setFormula(" ");
+        item.setString(" ");
+        item.setQuantificadorDaFormula(' ');
         item.setSatisfaz(false);
         esq = nullptr;
         dir = nullptr;
     };
+
+    TipoItem getItem(){
+        return item;
+    }
 
     friend class Arvore;
 };

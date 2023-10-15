@@ -1,3 +1,4 @@
+#pragma once
 #include "TipoCelula.hpp"
 
 class Pilha

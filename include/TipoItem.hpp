@@ -4,21 +4,30 @@
 class TipoItem
 {
 private:
-    std::string expressao;
+    std::string formula;
+    std::string stringDeAnalise;
+    int posicao;
     bool satisfaz;
-    char quantificadorDaExpressao;
+    char quantificadorDaFormula;
 
 public:
     TipoItem()
     {
-        expressao = " ";
+        formula = " ";
+        stringDeAnalise = " ";
         satisfaz = false;
-        quantificadorDaExpressao = ' ';
+        quantificadorDaFormula = ' ';
+        posicao = -1;
     }
 
-    void setExpressao(std::string _expressao)
+    void setFormula(std::string _Formula)
     {
-        expressao = _expressao;
+        formula = _Formula;
+    }
+
+    void setPosicao(int pos)
+    {
+        posicao = pos;
     }
 
     void setSatisfaz(bool resultado)
@@ -26,23 +35,36 @@ public:
         satisfaz = resultado;
     }
 
-    void setQuantificadorDaExpressao(char quantificador)
+    void setQuantificadorDaFormula(char quantificador)
     {
-        quantificadorDaExpressao = quantificador;
+        quantificadorDaFormula = quantificador;
+    }
+    void setString(std::string Analise)
+    {
+        stringDeAnalise = Analise;
     }
 
-    std::string getExpressao()
+    std::string getFormula()
     {
-        return expressao;
+        return formula;
+    }
+
+    std::string getAnalise()
+    {
+        return stringDeAnalise;
     }
 
     bool getSatisfaz()
     {
         return satisfaz;
     }
-
-    char getQuantificadorDaExpressao()
+    int getPosicao()
     {
-        return quantificadorDaExpressao;
+        return posicao;
+    }
+
+    char getQuantificadorDaFormula()
+    {
+        return quantificadorDaFormula;
     }
 };

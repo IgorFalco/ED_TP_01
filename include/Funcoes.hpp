@@ -1,34 +1,67 @@
 #pragma once
 #include <iostream>
-#include "../include/Arvore.hpp"
 #include <bits/stdc++.h>
 #include "Pilha.hpp"
 using namespace std;
 
-namespace FuncoesTP1
+namespace FuncoesAvaliacao
 {
     bool ConfereOperador(char c)
     {
-        // Retorna se for ture se for um dígito e false se for um operador
+        // Retorna se for true se for um dígito e false se for um operador
         return isdigit(c);
     }
-    const char *ModificadorDeString(const char *formula, const char *stringParaAnalisar)
+    std::string ModificadorDeString(std::string formula, std::string stringParaAnalisar)
     {
-        char *novastring = new char[strlen(formula) + 1];
-        strcpy(novastring, formula);
-        for (int i = 0; i <= (int)strlen(stringParaAnalisar); i++)
+        std::string novastring = formula;
+        std::string valor = " ";
+        char iChar1 = ' ';
+        char iChar2 = ' ';
+        int tamanho = (int)novastring.size();
+        for (int i = 0; i <= (int)stringParaAnalisar.size() - 1; i++)
         {
-            char iChar = i + '0';
+            valor = std::to_string(i);
+            iChar1 = valor[0];
+            iChar2 = valor[1];
 
-            for (int j = 0; j <= (int)strlen(novastring); j++)
+            for (int j = 0; j <= tamanho - 1; j++)
             {
-                if (iChar == formula[j])
-                    novastring[j] = stringParaAnalisar[i];
+                if (i >= 10)
+                {
+                    if (j != tamanho - 1)
+                    {
+
+                        if (formula[j] != ' ' && formula[j + 1] != ' ')
+                        {
+                            if (iChar1 == formula[j] && iChar2 == formula[j + 1]){
+                                novastring[j] = stringParaAnalisar[i];
+                                novastring[j+1] = ' ';
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (formula[j] != ' ' && formula[j + 1] == ' ')
+                    {
+                        if (j > 0)
+                        {
+                            if (iChar1 == formula[j] && formula[j - 1] == ' ')
+                                novastring[j] = stringParaAnalisar[i];
+                        }
+                        else
+                        {
+                            if (iChar1 == formula[j])
+                                novastring[j] = stringParaAnalisar[i];
+                        }
+                    }
+                }
             }
         }
         return novastring;
     }
-    int AvaliacaoDeExpressoes(string expressoes, const char *stringDeAnalise)
+
+    int AvaliacaoDeExpressoes(string expressoes)
     {
         Pilha Stack;
 
@@ -75,13 +108,6 @@ namespace FuncoesTP1
 
         return Stack.top();
     }
-
-
-
-
-
-
-    
 
     /* O código abaixo contém funções que irão transformar a fórmula da operação para o tipo
        prefixado, desse modo facilitando na hora de avaliar as expressões!
