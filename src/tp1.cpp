@@ -1,13 +1,13 @@
 #include <iostream>
 #include <string.h>
-#include "../include/Funcoes.hpp"
-#include "../include/FuncoesArvore.hpp"
+#include "../include/FuncoesAvaliacao.hpp"
+#include "../include/FuncoesSatisfabilidade.hpp"
 
 using namespace FuncoesAvaliacao;
 using namespace FuncoesSatisfabilidade;
 
 int main(int argc, char *argv[])
-	{
+{
 
 	if (argc != 4)
 	{
@@ -32,8 +32,6 @@ int main(int argc, char *argv[])
 	{
 		resultado = AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
 	}
-
-	resultado = AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
 	// Imprimindo as strings
 	std::cout << resultado << std::endl;
 
