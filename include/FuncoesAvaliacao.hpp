@@ -7,6 +7,7 @@ using namespace std;
 namespace FuncoesAvaliacao
 {
     bool ConfereOperador(char c);
+    
     std::string ModificadorDeString(std::string formula, std::string stringParaAnalisar);
 
     int AvaliacaoDeExpressoes(string expressoes);

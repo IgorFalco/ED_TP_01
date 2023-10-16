@@ -4,8 +4,8 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/tp1.o $(OBJ)/Pilha.o $(OBJ)/Arvore.o $(OBJ)/TipoItem.o $(OBJ)/FuncoesSatisfabilidade.o $(OBJ)/FuncoesAvaliacao.o
-HEADERS = $(INC)/Arvore.hpp $(INC)/FuncoesAvaliacao.hpp $(INC)/TipoCelula.hpp  $(INC)/TipoItem.hpp  $(INC)/TipoNo.hpp  $(INC)/Pilha.hpp  $(INC)/FuncoesSatisfabilidade.hpp 
+OBJS = $(OBJ)/tp1.o $(OBJ)/Pilha.o $(OBJ)/Arvore.o $(OBJ)/TipoItem.o $(OBJ)/FuncoesSatisfabilidade.o $(OBJ)/FuncoesAvaliacao.o $(OBJ)/memlog.o
+HEADERS = $(INC)/Arvore.hpp $(INC)/FuncoesAvaliacao.hpp $(INC)/TipoCelula.hpp  $(INC)/TipoItem.hpp  $(INC)/TipoNo.hpp  $(INC)/Pilha.hpp  $(INC)/FuncoesSatisfabilidade.hpp $(INC)/memlog.hpp  
 CFLAGS = -Wall -c -g -I $(INC)
 
 EXE = $(BIN)/tp1.out
@@ -30,6 +30,9 @@ $(OBJ)/FuncoesSatisfabilidade.o: $(HEADERS) $(SRC)/FuncoesSatisfabilidade.cpp
 
 $(OBJ)/FuncoesAvaliacao.o: $(HEADERS) $(SRC)/FuncoesAvaliacao.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/FuncoesAvaliacao.o $(SRC)/FuncoesAvaliacao.cpp
+
+$(OBJ)/memlog.o: $(HEADERS) $(SRC)/memlog.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/memlog.o $(SRC)/memlog.cpp
 
 all: $(EXE)
  	

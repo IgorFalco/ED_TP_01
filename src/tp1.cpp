@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string.h>
+#include "../include/msgassert.hpp"
+#include "../include/memlog.hpp"
 #include "../include/FuncoesAvaliacao.hpp"
 #include "../include/FuncoesSatisfabilidade.hpp"
 
@@ -8,10 +10,14 @@ using namespace FuncoesSatisfabilidade;
 
 int main(int argc, char *argv[])
 {
+	// char teste[7] = "tp1_ED";
+
+	// iniciaMemLog(teste);
+	// ativaMemLog();
 
 	if (argc != 4)
 	{
-		std::cerr << "Uso: " << argv[0] << " <string1> <string2> <string3>" << std::endl;
+		erroAssert(false, "Foram passados um número errado de argumentos");
 		return 1; // Retorna 1 para indicar um erro
 	}
 
@@ -32,8 +38,17 @@ int main(int argc, char *argv[])
 	{
 		resultado = AvaliacaoDeSatisfabilidade(formula, stringDeAnalise);
 	}
+	else
+	{
+		erroAssert(false, "A operacao indicada não está correta");
+	}
+
 	// Imprimindo as strings
 	std::cout << resultado << std::endl;
+
+	// desativaMemLog();
+
+	// std::cout << finalizaMemLog() << std::endl;
 
 	return 0; // Retorna 0 para indicar sucesso
 }

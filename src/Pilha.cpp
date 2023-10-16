@@ -1,4 +1,5 @@
 #include "../include/Pilha.hpp"
+#include "../include/memlog.hpp"
 
 Pilha::Pilha()
 {
@@ -13,17 +14,22 @@ Pilha::~Pilha()
 
 void Pilha::push(char c)
 {
+    // defineFaseMemLog(0);
     TipoCelula *nova;
 
     nova = new TipoCelula;
     nova->item = c;
     nova->prox = topo;
     topo = nova;
+
+    // ESCREVEMEMLOG((long int) (&(nova->item)), sizeof(double), 0);
+    // ESCREVEMEMLOG((long int) (&(nova->prox)), sizeof(double), 0);
     tamanho++;
 }
 
 const char Pilha::pop()
 {
+    // defineFaseMemLog(1);
     TipoCelula *p;
     char aux;
 
@@ -31,8 +37,11 @@ const char Pilha::pop()
         throw "A pilha está vazia";
 
     aux = topo->item;
+    
+    // LEMEMLOG((long int) (&(topo->item)), sizeof(double), 0);
     p = topo;
     topo = topo->prox;
+    // ESCREVEMEMLOG((long int) (&(topo)), sizeof(double), 0);
     delete p;
     tamanho--;
 

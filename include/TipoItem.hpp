@@ -5,9 +5,14 @@ class TipoItem
 {
 private:
     std::string formula;
+
+    //String binaria
     std::string stringDeAnalise;
+    //Posicao em que existia uma variável quantificada naquele nó, antes de trocar essa variável por um '0' ou '1'
     int posicao;
+    //Se o nó satisfaz a fórmula
     bool satisfaz;
+    //Quantificador que diz qual operação fazer com os filhos
     char quantificadorDaFormula;
 
 public:

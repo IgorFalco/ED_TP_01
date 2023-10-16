@@ -1,4 +1,7 @@
 #include "../include/FuncoesAvaliacao.hpp"
+#include "../include/memlog.hpp"
+#include "../include/msgassert.hpp"
+
 
 bool FuncoesAvaliacao::ConfereOperador(char c)
 {
@@ -58,14 +61,14 @@ std::string FuncoesAvaliacao::ModificadorDeString(std::string formula, std::stri
 
 int FuncoesAvaliacao::AvaliacaoDeExpressoes(string expressoes)
 {
-    Pilha Stack;
+    Pilha PilhaDigitos;
 
     for (int j = expressoes.size() - 1; j >= 0; j--)
     {
 
         // Converte e empilha os dígitos na pilha
         if (FuncoesAvaliacao::ConfereOperador(expressoes[j]))
-            Stack.push(expressoes[j] - '0');
+            PilhaDigitos.push(expressoes[j] - '0');
 
         else
         {
@@ -73,15 +76,15 @@ int FuncoesAvaliacao::AvaliacaoDeExpressoes(string expressoes)
             int o2;
             if (expressoes[j] == '~')
             {
-                o1 = Stack.top();
-                Stack.pop();
+                o1 = PilhaDigitos.top();
+                PilhaDigitos.pop();
             }
             else
             {
-                o1 = Stack.top();
-                Stack.pop();
-                o2 = Stack.top();
-                Stack.pop();
+                o1 = PilhaDigitos.top();
+                PilhaDigitos.pop();
+                o2 = PilhaDigitos.top();
+                PilhaDigitos.pop();
             }
             // Se encontrar operadores
             // Exclui os dois últimos itens da pilha
@@ -89,19 +92,22 @@ int FuncoesAvaliacao::AvaliacaoDeExpressoes(string expressoes)
             switch (expressoes[j])
             {
             case '|':
-                Stack.push(o1 || o2);
+                PilhaDigitos.push(o1 || o2);
                 break;
             case '&':
-                Stack.push(o1 & o2);
+                PilhaDigitos.push(o1 & o2);
                 break;
             case '~':
-                Stack.push(!o1);
+                PilhaDigitos.push(!o1);
+                break;
+            default:
+                erroAssert(false, "Existe um Operador inválido na fórmula");
                 break;
             }
         }
     }
 
-    return Stack.top();
+    return PilhaDigitos.top();
 }
 
 /* O código abaixo contém funções que irão transformar a fórmula da operação para o tipo

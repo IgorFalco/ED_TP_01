@@ -1,18 +1,19 @@
 #include "../include/FuncoesSatisfabilidade.hpp"
+#include "../include/memlog.hpp"
 
 std::string FuncoesSatisfabilidade::AvaliacaoDeSatisfabilidade(std::string formula, std::string stringDeAnalise)
 {
-    Arvore ArvoreDeSatisfabilidade;
+    Arvore ArvoreBinaria;
 
-    TipoItem ItemTesteSatisfabilidade;
+    TipoItem Item;
 
-    ItemTesteSatisfabilidade.setFormula(formula);
-    ItemTesteSatisfabilidade.setString(stringDeAnalise);
+    Item.setFormula(formula);
+    Item.setString(stringDeAnalise);
 
-    ArvoreDeSatisfabilidade.Insere(ItemTesteSatisfabilidade);
-    ArvoreDeSatisfabilidade.Caminha(ArvoreDeSatisfabilidade.getRaiz());
+    ArvoreBinaria.Insere(Item);
+    ArvoreBinaria.Caminha(ArvoreBinaria.getRaiz());
 
-    TipoNo *raiz = ArvoreDeSatisfabilidade.getRaiz();
+    TipoNo *raiz = ArvoreBinaria.getRaiz();
 
     if (raiz->getItem().getSatisfaz() == true)
         return "1 " + raiz->getItem().getAnalise();
